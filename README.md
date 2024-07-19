@@ -24,19 +24,19 @@ Personal Contact Notebook is a Bash script to manage a personal contact database
 
 ### Script Variables
 
-- `DATABASENAME`: The name of the SQLite database file. Default is `personalcontact.db`.
+- `DATABASENAME`: The name of the SQLite database file. The default is `personalcontact.db`.
 - `CREATESQL`: SQL statement to create the `CONTACT` table if it does not exist.
-- `SQLITPATH`: Path to the `sqlite3` executable. Default is `/usr/bin/sqlite3`.
+- `SQLITPATH`: Path to the `sqlite3` executable. The default is `/usr/bin/sqlite3`.
 
 ### Functions
 
 - **insert()**: Inserts a new contact into the database.
-- **showlist()**: Lists all contacts in the database.
-- **searchContact()**: Searches for a contact by name and family.
-- **modifyContact()**: Modifies an existing contact.
-- **deleteContact()**: Deletes a contact.
-- **datavalidationcheck()**: Validates the data entered by the user.
-- **datadublicationcheck()**: Checks for duplicate contacts.
+- **show_list()**: Lists all contacts in the database.
+- **search_contact()**: Searches for a contact by name and family.
+- **modify_contact()**: Modifies an existing contact.
+- **delete_contact()**: Deletes a contact.
+- **data_validation_check()**: Validates the data entered by the user.
+- **data_duplication_check()**: Checks for duplicate contacts.
 
 ### Main Menu
 
