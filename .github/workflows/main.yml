@@ -2,10 +2,8 @@ name: Run Contact Database Script and Release
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-  workflow_dispatch:
+
+permissions: write-all
 
 jobs:
   build_and_release:
