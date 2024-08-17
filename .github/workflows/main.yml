@@ -23,7 +23,6 @@ jobs:
     - name: Run the contact database script
       run: |
         chmod +x contacts.sh
-        ./contacts.sh
       env:
         DATABASENAME: personalcontact.db
 
