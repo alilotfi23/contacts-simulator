@@ -1,0 +1,58 @@
+name: Run Contact Database Script and Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SQLite
+      run: sudo apt-get update && sudo apt-get install -y sqlite3
+
+    - name: Run the contact database script
+      run: |
+        chmod +x contacts.sh
+        ./contacts.sh
+      env:
+        DATABASENAME: personalcontact.db
+
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    - name: Cache Node.js dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.npm
+        key: node-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          node-${{ runner.os }}-
+
+    - name: Install dependencies
+      run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git
+
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npx semantic-release
